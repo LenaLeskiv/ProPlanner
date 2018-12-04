@@ -1,8 +1,8 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -99,8 +99,33 @@ public class CreateEvent {
         waitetime();
         WebElement Minutes2 = driver.findElement(By.xpath("//*[@id=\"picker-popover\"]/div[2]/div[3]/div/div/div/div[3]"));
         Actions MinutesClick2 = new Actions(driver);
-        MinutesClick.doubleClick(Minutes2).build().perform();
+        MinutesClick2.doubleClick(Minutes2).build().perform();
+//Goals
+        WebElement GoalField = driver.findElement(By.xpath("//*[@id=\"react-select-2-input\"]"));
+        waitetime();
+        GoalField.sendKeys("finish");
+        waitetime();
+        driver.findElement(By.className("css-15k3avv")).click();
 
+        WebElement Description = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/form/div[1]/ul/li[4]/div/div/div/div/textarea"));
+        Description.sendKeys("Test of Automation");
+        waitetime();
+
+//        WebDriverWait wait = new WebDriverWait(driver, 10);
+//        WebElement Tasks = wait.until(
+//                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/form/div[1]/ul/li[5]/div/div[2]/div/div/div/div/input")));
+
+        WebElement Tasks = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/form/div[1]/ul/li[5]/div/div[2]/div/div/div/div/input"));
+//        waitetime();
+//        JavascriptExecutor jsExecutor=(JavascriptExecutor)driver;
+        Tasks.sendKeys("Step");
+        Tasks.sendKeys(Keys.ENTER);
+//        waitetime();
+
+//        GoalField.submit();
+        //WebElement Goal = driver.findElement(By.xpath("//*[@id=\"react-select-2-input\"]"));
+        //Goal.click();
+        //waitetime();
     }
 
     public static WebDriver initChromeDriver(){
