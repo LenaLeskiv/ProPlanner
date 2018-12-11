@@ -13,15 +13,16 @@ public class CreateEvent {
         driver.get("http://frontend.proplanner.formula1.cloud.provectus-it.com/login");
 
         String HomePage = driver.getWindowHandle();
-        System.out.println(HomePage);
+//        System.out.println(HomePage);
         WebElement sign_up = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[1]/button"));
         sign_up.click();
 
-        String PopUp = driver.getWindowHandle();
-        System.out.println(PopUp);
+        String PopUp;
+//                = driver.getWindowHandle();
+//        System.out.println(PopUp);
         Set<String> windows = driver.getWindowHandles();
         Iterator<String> iterator = windows.iterator();
-
+//Switch to Google pop-up window
         while(iterator.hasNext()) {
             PopUp = iterator.next();
 
@@ -88,6 +89,7 @@ public class CreateEvent {
         Year2.click();
         waitetime();
         WebElement Year2019 = driver.findElement(By.xpath("//*[@id=\"picker-popover\"]/div[2]/div[3]/div/div/div[120]"));
+        waitetime();
         Year2019.click();
         waitetime();
 
@@ -106,20 +108,43 @@ public class CreateEvent {
         GoalField.sendKeys("finish");
         waitetime();
         driver.findElement(By.className("css-15k3avv")).click();
-
+// Description
         WebElement Description = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/form/div[1]/ul/li[4]/div/div/div/div/textarea"));
         Description.sendKeys("Test of Automation");
         waitetime();
+// Tasks
+/*    WebElement signup_email = wait.until(ExpectedConditions.presenceOfElementLocated(By.name("email")));
+signup_email = (WebElement)((JavascriptExecutor)driver).executeScript("arguments[0].style.visibility = 'visible'; return arguments[0];", signup_email);
 
-//        WebDriverWait wait = new WebDriverWait(driver, 10);
-//        WebElement Tasks = wait.until(
-//                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/form/div[1]/ul/li[5]/div/div[2]/div/div/div/div/input")));
-
+WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement Tasks = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/form/div[1]/ul/li[5]/div/div[2]/div/div/div/div/input")));
+        ((JavascriptExecutor)driver).executeScript("arguments[0].value = 'step'", Tasks);
+        waitetime();*/
         WebElement Tasks = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/form/div[1]/ul/li[5]/div/div[2]/div/div/div/div/input"));
-//        waitetime();
-//        JavascriptExecutor jsExecutor=(JavascriptExecutor)driver;
-        Tasks.sendKeys("Step");
-        Tasks.sendKeys(Keys.ENTER);
+        Tasks.click();
+//        Tasks = (WebElement)((JavascriptExecutor)driver).executeScript("arguments[0].style.visibility = 'visible'; return arguments[0];", Tasks);
+        waitetime();
+//        ((JavascriptExecutor)driver).executeScript("arguments[0].value = 'step'", Tasks);
+//        Tasks.sendKeys("Step");
+//Priority
+        WebElement Priority = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/form/div[2]/div/ul/li[1]/div/div"));
+        Priority.click();
+        waitetime();
+        WebElement High = driver.findElement(By.xpath("//*[@id=\"lock-menu\"]/div[2]/ul/li[1]"));
+        High.click();
+        waitetime();
+//Type
+        WebElement Type = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/form/div[2]/div/ul/li[2]/div/div\n"));
+        Type.click();
+        waitetime();
+        WebElement Work = driver.findElement(By.xpath("//*[@id=\"type-menu\"]/div[2]/ul/li[1]"));
+        Work.click();
+        waitetime();
+//Save
+        WebElement Save = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/form/div[2]/div/button[1]/span[1]"));
+        Save.click();
+
+//        Tasks.sendKeys(Keys.ENTER);
 //        waitetime();
 
 //        GoalField.submit();
@@ -128,11 +153,11 @@ public class CreateEvent {
         //waitetime();
     }
 
-    public static WebDriver initChromeDriver(){
-        System.setProperty("webdriver.chrome.driver",SignUp.class.getResource("chromedriver.exe").getPath());
+    private static WebDriver initChromeDriver(){
+        System.setProperty("webdriver.chrome.driver",CreateEvent.class.getResource("chromedriver.exe").getPath());
         return new ChromeDriver();
     }
-    public static void waitetime() {   //создание метода время ожидания загрузки
+    private static void waitetime() {   //создание метода время ожидания загрузки
         try {
             Thread.sleep(2500);
         } catch (InterruptedException e) {

@@ -73,11 +73,11 @@ public class SignUp {
 
     }
 
-    public static WebDriver initChromeDriver(){
+    private static WebDriver initChromeDriver(){
         System.setProperty("webdriver.chrome.driver",SignUp.class.getResource("chromedriver.exe").getPath());
         return new ChromeDriver();
     }
-    public static void waitetime() {   //создание метода время ожидания загрузки
+    private static void waitetime() {   //создание метода время ожидания загрузки
         try {
             Thread.sleep(2500);
         } catch (InterruptedException e) {
